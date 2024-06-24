@@ -24,6 +24,7 @@ from typing import (
 
 from strawberry.annotation import StrawberryAnnotation
 from strawberry.exceptions import InvalidArgumentTypeError, InvalidDefaultFactoryError
+from strawberry.resolvers import default_resolver
 from strawberry.type import (
     StrawberryType,
     WithStrawberryObjectDefinition,
@@ -77,7 +78,7 @@ def _is_generic(resolver_type: Union[StrawberryType, type]) -> bool:
 
 class StrawberryField(dataclasses.Field):
     type_annotation: Optional[StrawberryAnnotation]
-    default_resolver: Callable[[Any, str], object] = getattr
+    default_resolver: Callable[[Any, str], object] = default_resolver
 
     def __init__(
         self,

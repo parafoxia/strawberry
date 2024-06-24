@@ -3,6 +3,8 @@ from __future__ import annotations
 from dataclasses import InitVar, dataclass, field
 from typing import Any, Callable
 
+from strawberry.resolvers import default_resolver
+
 from .name_converter import NameConverter
 
 
@@ -10,7 +12,7 @@ from .name_converter import NameConverter
 class StrawberryConfig:
     auto_camel_case: InitVar[bool] = None  # pyright: reportGeneralTypeIssues=false
     name_converter: NameConverter = field(default_factory=NameConverter)
-    default_resolver: Callable[[Any, str], object] = getattr
+    default_resolver: Callable[[Any, str], object] = default_resolver
     relay_max_results: int = 100
     disable_field_suggestions: bool = False
 
